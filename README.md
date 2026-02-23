@@ -110,3 +110,16 @@ script tag অথবা external js file এ নিচের step গুলো f
     console.log("body::>great grand parent got clicked");
   });
 </script>
+
+
+**<!-- Ans to the question no 4 -->**
+
+Event Delegation হলো জাভাস্ক্রিপ্টের একটি স্মার্ট টেকনিক, যেখানে অনেকগুলো child element এ আলাদা আলাদা event listener যোগ না করে, তাদের একটি common parent element এ একটিমাত্র event listener যোগ করি।
+
+​এটি মূলত Event Bubbling এর সুবিধা নিয়ে কাজ করে। যেহেতু child element এ click করলে সেই event টি বুদবুদ হয়ে উপরে parent এর কাছে যায়, তাই parent সহজেই বুঝতে পারে তার কোন child এ click করা হয়েছে।
+
+Event Delegation is useful for the following reasons
+
+১. মেমোরি সাশ্রয়: যদি একটি লিস্টে ১০০০টি আইটেম থাকে। ১০০০টি আলাদা লিসেনার বসানোর চেয়ে ১টি লিসেনার বসানো অনেক বেশি মেমোরি সাশ্রয়ী।
+
+২. Dynamic element: যদি ভবিষ্যতে নতুন কোনো আইটেম জাভাস্ক্রিপ্ট দিয়ে লিস্টে যোগ করতে হয়, তবে সেটির জন্য আলাদা করে আর লিসেনার লিখতে হবে না। প্যারেন্ট অটোমেটিক সেটি হ্যান্ডেল করবে।
