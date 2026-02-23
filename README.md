@@ -74,6 +74,7 @@ ol.appendChild(li);
 
 **<!-- Ans to the question no 3 -->**
 
+**Event Bubbling**
 Event Bubbling হলো DOM এর একটা mechanism যেখানে একটি element এ event trigger হলে বা click করা হলে, সেই event DOM Tree এর মাধ্যমে উপরের দিকে bubble করে element টির parent element কেও trigger করে।
 
 
@@ -114,12 +115,25 @@ script tag অথবা external js file এ নিচের step গুলো f
 
 **<!-- Ans to the question no 4 -->**
 
+**Event Delegation**
 Event Delegation হলো জাভাস্ক্রিপ্টের একটি স্মার্ট টেকনিক, যেখানে অনেকগুলো child element এ আলাদা আলাদা event listener যোগ না করে, তাদের একটি common parent element এ একটিমাত্র event listener যোগ করি।
 
 ​এটি মূলত Event Bubbling এর সুবিধা নিয়ে কাজ করে। যেহেতু child element এ click করলে সেই event টি বুদবুদ হয়ে উপরে parent এর কাছে যায়, তাই parent সহজেই বুঝতে পারে তার কোন child এ click করা হয়েছে।
 
-Event Delegation is useful for the following reasons
+**Event Delegation is useful for the following reasons**
 
 ১. মেমোরি সাশ্রয়: যদি একটি লিস্টে ১০০০টি আইটেম থাকে। ১০০০টি আলাদা লিসেনার বসানোর চেয়ে ১টি লিসেনার বসানো অনেক বেশি মেমোরি সাশ্রয়ী।
 
 ২. Dynamic element: যদি ভবিষ্যতে নতুন কোনো আইটেম জাভাস্ক্রিপ্ট দিয়ে লিস্টে যোগ করতে হয়, তবে সেটির জন্য আলাদা করে আর লিসেনার লিখতে হবে না। প্যারেন্ট অটোমেটিক সেটি হ্যান্ডেল করবে।
+
+**<!-- Ans to the question no 5 -->**
+**difference between preventDefault() and stopPropagation() methods**
+
+**stopPropagation() method** is used to prevent bubbling from child to parent element.
+
+It is used in complex UIs to ensure an event handled by a child element does not unintentionally trigger a handler on a parent element.
+
+
+**preventDefault() method** is used to prevent event's default action.
+
+It is use when handling an event with custom JavaScript logic instead of the browser's built-in action.
