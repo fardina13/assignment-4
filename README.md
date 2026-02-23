@@ -7,41 +7,41 @@ getElementById() - is a method in javascript used to select an HTML element by i
 getElementsByClassName() - is a method in javascript for selecting elements by their classnames.
 
 **Difference 2- process** -->
-যখন DOM থেকে নির্দিষ্ট element প্রয়োজন হয়, তখন id সেট করে document.getElementById('') দিয়ে খুঁজে বের করতে হয়
+To get an element from DOM, you have to set an id and search it using document.getElementById('')
 
-যখন DOM থেকে একাধিক  element প্রয়োজন হয়, তখন যেখানে যেখানে দরকার সেখানে class name বসাতে হবে। তারপর document.getElementsByClassName('') দিয়ে খুঁজে বের করতে হবে।
+When you need more than one element, than put class names where it is need and get them by document.getElementsByClassName('').
 
 **Difference 3- result** -->
-id দিয়ে খুঁজলে id টাই return করবে, id পাওয়া না গেলে null দিবে।
+If you search by id, it will give id.if there is no id it will give null.
 
-একাধিক class name পাওয়া গেলে একটা array তে class name গুলো provide করবে। class name না পেলে খালি array [] দিবে।
+It gives classNames in an array and if there is no  classNames it will give an empty array []
 
 **Difference 4- access** -->
-directly access properties( e.g element.innerHTML) on the returned element.
+Directly access properties( e.g element.innerHTML) on the returned element.
 
-must iterate through the collection (e.g using a loop or index collection [0] to access individual elements or their properties)
+Must iterate through the collection (e.g using a loop or index collection [0] to access individual elements or their properties)
 
 **Difference 5- live collection** -->
-live collection not applicable, it returns a single element.
+Live collection not applicable, it returns a single element.
 
-returns a live collection - automatically updates if elements with the specified class are added or remove from DOM.
+Returns a live collection - automatically updates if elements with the specified class are added or remove from DOM.
 
 **difference between querySelector and querySelectorAll**
 **Difference 1- definition**-->
-querySelector() - javascript এর একটা method যা DOM থেকে নির্দিষ্ট css selector এর সাথে মিলে যায় এমন শুধু প্রথম element কে খুঁজে বের করে।
+querySelector() - a method of javascript that search the very first element from DOM by matching css selector.
 
-querySelectorAll() - javascript এর একটা method যা DOM থেকে css selector এর সাথে মিল থাকা সব element কে খুঁজে বের করে একটি তালিকায় জমা করে।
+querySelectorAll() - a method of javascript that search all elements from DOM by matching css selector and deposit them in a list.
 
 **Difference 2- result** -->
-return value - static nodelist, element পাওয়া না গেলে nodelist [] দেয়
+Return value - static nodelist. If there is no element, it gives nodelist [].
 
-element না পেলে null দেয়
+If there is no element, it gives null.
 
 
 **<!-- Ans to the question no 2 -->**
 
 **Create and insert a new element into the DOM**
-ধরি body tag এর ভেতর একটা ol আছে যাতে ৫টা li আছে। এখন এখানে আরেকটা li যোগ করবো, ৬টা li হবে।
+Suppose there is a ol including 5 li. Now, we will add 1 li to that ol. Total li will be 6.
 
 <body>
   <ol id="item-list">
@@ -53,29 +53,29 @@ element না পেলে null দেয়
   </ol>
 </body>
 
-script tag অথবা external js file এ নিচের step গুলো follow করতে হবে।
+Following steps should be followed in between script tag or an external js file.
 
 <script>
-step-1 যে parent এর ভেতর নতুন element insert করতে হবে তাকে আগে  তার id দিয়ে ধরতে হবে। এখানে li এর parent,  ol যার id = "item-list"
+step-1 We should get the parent elemnet where we will add a new element by their id. Here parent of li is ol whose id = "item-list"
 const ol = document.getElementById('item-list');
 
-step-2 নতুন li বানাতে হবে
+step-2 Make new li
 const li = document.createElement('li');
 
-step-3 নতুন li তে classList add করতে হবে।
+step-3 Add classList to the new li
 li.classList.add('item');
 
-step-4 নতুন li তে innerText দিতে হবে
+step-4 Put innerText to the new li
 li.innerText = 'Borishal';
 
-step-5 li কে ol এ append বা যোগ করতে হবে
+step-5 Append newly made li to the ol
 ol.appendChild(li);
 </script>
 
 **<!-- Ans to the question no 3 -->**
 
 **Event Bubbling**
-Event Bubbling হলো DOM এর একটা mechanism যেখানে একটি element এ event trigger হলে বা click করা হলে, সেই event DOM Tree এর মাধ্যমে উপরের দিকে bubble করে element টির parent element কেও trigger করে।
+Event Bubbling is a mechanism of DOM where if an element is triggered or get clicked then that event will bubble up the DOM Tree and trigger the parent element too.
 
 
 **Event Bubbling working process**
@@ -88,8 +88,7 @@ Event Bubbling হলো DOM এর একটা mechanism যেখানে �
     </section>
 </body>
 
-script tag অথবা external js file এ নিচের step গুলো follow করতে হবে।
-
+Following steps should be followed in between script tag or an external js file.
 <script>
   //step-1 click listener in li(child1)
   document.getElementById('child1').addEventListener('click', function(event) {
@@ -116,15 +115,15 @@ script tag অথবা external js file এ নিচের step গুলো f
 **<!-- Ans to the question no 4 -->**
 
 **Event Delegation**
-Event Delegation হলো জাভাস্ক্রিপ্টের একটি স্মার্ট টেকনিক, যেখানে অনেকগুলো child element এ আলাদা আলাদা event listener যোগ না করে, তাদের একটি common parent element এ একটিমাত্র event listener যোগ করি।
+Event Delegation is a smart technique of javascript where there is no need to add event listener to each and every different element. It can be done by adding event listener to their common parent element.
 
-​এটি মূলত Event Bubbling এর সুবিধা নিয়ে কাজ করে। যেহেতু child element এ click করলে সেই event টি বুদবুদ হয়ে উপরে parent এর কাছে যায়, তাই parent সহজেই বুঝতে পারে তার কোন child এ click করা হয়েছে।
+It primarily works by taking advantage of Event Bubbling. Since clicking on a child element causes that event to 'bubble up' to its parent, the parent can easily identify which of its children was clicked.
 
 **Event Delegation is useful for the following reasons**
 
-১. মেমোরি সাশ্রয়: যদি একটি লিস্টে ১০০০টি আইটেম থাকে। ১০০০টি আলাদা লিসেনার বসানোর চেয়ে ১টি লিসেনার বসানো অনেক বেশি মেমোরি সাশ্রয়ী।
+1. ​Memory Efficiency: If there are 1,000 items in a list, adding a single listener to the parent is much more memory-efficient than attaching 1,000 separate listeners to each item.
 
-২. Dynamic element: যদি ভবিষ্যতে নতুন কোনো আইটেম জাভাস্ক্রিপ্ট দিয়ে লিস্টে যোগ করতে হয়, তবে সেটির জন্য আলাদা করে আর লিসেনার লিখতে হবে না। প্যারেন্ট অটোমেটিক সেটি হ্যান্ডেল করবে।
+2. ​Dynamic Elements: If new items are added to the list using JavaScript in the future, you won't need to write separate listeners for them. The parent element will handle them automatically.
 
 **<!-- Ans to the question no 5 -->**
 **difference between preventDefault() and stopPropagation() methods**
