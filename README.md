@@ -121,9 +121,9 @@ It primarily works by taking advantage of Event Bubbling. Since clicking on a ch
 
 **Event Delegation is useful for the following reasons**
 
-1. ​Memory Efficiency: If there are 1,000 items in a list, adding a single listener to the parent is much more memory-efficient than attaching 1,000 separate listeners to each item.
+1. **​Memory Efficiency:** If there are 1,000 items in a list, adding a single listener to the parent is much more memory-efficient than attaching 1,000 separate listeners to each item.
 
-2. ​Dynamic Elements: If new items are added to the list using JavaScript in the future, you won't need to write separate listeners for them. The parent element will handle them automatically.
+2. **​Dynamic Elements:** If new items are added to the list using JavaScript in the future, you won't need to write separate listeners for them. The parent element will handle them automatically.
 
 **<!-- Ans to the question no 5 -->**
 **difference between preventDefault() and stopPropagation() methods**
