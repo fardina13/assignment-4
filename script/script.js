@@ -17,6 +17,18 @@ const mainContainer = document.querySelector('main');
 const filterSection = document.getElementById('filtered-section');
 
 function calculateCount(){
+    const jobCount = allCardSection.children.length;
+    total.innerText = jobCount;
+    
+    const noJobsView = document.getElementById('no-jobs-view');
+
+    if (jobCount === 0) {
+        allCardSection.classList.add('hidden');
+        noJobsView.classList.remove('hidden');
+    } else {
+        allCardSection.classList.remove('hidden');
+        noJobsView.classList.add('hidden');
+    }
     total.innerText = allCardSection.children.length;
     interView.innerText = interviewList.length;
     rejected.innerText = rejectedList.length;
@@ -87,7 +99,12 @@ mainContainer.addEventListener('click', function(event){
     if(currentStatus == 'rej-filter-btn'){
         renderRejection();
     }
-    
+    if (event.target.classList.contains('btn-delete') || event.target.parentElement.classList.contains('btn-delete')) {
+    const card = event.target.closest('.job-card');
+    if (card) {
+       card.remove();
+       calculateCount(); 
+    }
     }
     else if(event.target.classList.contains('rejected-btn')){
         // console.log(event.target.parentNode.parentNode);
@@ -119,7 +136,7 @@ mainContainer.addEventListener('click', function(event){
     }
     calculateCount();
     }
-    
+}  
 })
 
 function renderInterview(){
