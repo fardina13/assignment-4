@@ -73,11 +73,40 @@ ol.appendChild(li);
 </script>
 
 **<!-- Ans to the question no 3 -->**
-Event Bubbling হলো DOM এর একটা mechsnism যেখানে একটি element এ event trigger হলে বা click করা হলে, সেই event DOM Tree এর মাধ্যমে উপরের দিকে bubble করে element টির parent element কেও trigger করে।
 
-<div id="grandparent">Grandparent
-  <div id="parent">Parent
-    <button id="child">Click Me (Child)
-    </button>
-  </div>
-</div
+Event Bubbling হলো DOM এর একটা mechanism যেখানে একটি element এ event trigger হলে বা click করা হলে, সেই event DOM Tree এর মাধ্যমে উপরের দিকে bubble করে element টির parent element কেও trigger করে।
+
+
+**Event Bubbling working process**
+<body id="great-grand-parent">
+    <section id="grand-parent">
+        <ol id="parent">
+            <li id="child1">X</li>
+            <li id="child2">Y</li>
+        </ol>
+    </section>
+</body>
+
+script tag অথবা external js file এ নিচের step গুলো follow করতে হবে।
+
+<script>
+  //step-1 click listener in li(child1)
+  document.getElementById('child1').addEventListener('click', function(event) {
+    console.log("li::>child1 got clicked");
+  });
+
+  //step-2 click listener in ol(parent)
+  document.getElementById('parent').addEventListener('click', function(event) {
+    console.log("ol::>parent got clicked");
+  });
+
+  //step-3 click listener in section(grand parent)
+  document.getElementById('grand-parent').addEventListener('click', function(event) {
+    console.log("section::>grand parent got clicked");
+  });
+
+  //step-4 click listener in body(great grand parent)
+  document.getElementById('great-grand-parent').addEventListener('click', function(event) {
+    console.log("body::>great grand parent got clicked");
+  });
+</script>
