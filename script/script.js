@@ -71,6 +71,13 @@ function toggleStyle(id){
 }
 // step-2
 mainContainer.addEventListener('click', function(event){
+    if (event.target.classList.contains('btn-delete') || event.target.closest('.btn-delete')){
+        const card = event.target.closest('.flex.justify-between.rounded-md'); 
+        if (card) {
+            card.remove();
+            calculateCount();
+             }
+    } 
     if(event.target.classList.contains('interview-btn')){
     const parentNode = event.target.parentNode.parentNode;
     const companyTitle = parentNode.querySelector('.companyTitle').innerText;
