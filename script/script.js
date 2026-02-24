@@ -17,24 +17,24 @@ const mainContainer = document.querySelector('main');
 const filterSection = document.getElementById('filtered-section');
 
 function calculateCount(){
-    // const jobCount = allCardSection.children.length;
-    // total.innerText = jobCount;
+    const jobCount = allCardSection.children.length;
+    total.innerText = jobCount;
     
-    // const noJobsView = document.getElementById('no-jobs-view');
+    const noJobsView = document.getElementById('no-jobs-view');
 
-    // if (jobCount === 0) {
-    //     allCardSection.classList.add('hidden');
-    //     noJobsView.classList.remove('hidden');
-    // } else {
-    //     allCardSection.classList.remove('hidden');
-    //     noJobsView.classList.add('hidden');
-    // }
+    if (jobCount === 0) {
+        allCardSection.classList.add('hidden');
+        noJobsView.classList.remove('hidden');
+    } else {
+        allCardSection.classList.remove('hidden');
+        noJobsView.classList.add('hidden');
+    }
     total.innerText = allCardSection.children.length;
     interView.innerText = interviewList.length;
     rejected.innerText = rejectedList.length;
 }
 calculateCount();
-
+// step-1
 function toggleStyle(id){
     // adding blue bg for all
     allFilterBtn.classList.add('bg-gray-200', 'text-[#64748b]');
@@ -52,6 +52,8 @@ function toggleStyle(id){
     selected.classList.remove('bg-gray-200', 'text-[#64748b]');
     selected.classList.add('bg-[#3b82f6]', 'text-white');
 
+// step-1 finished
+// step-4 display
     if(id == 'int-filter-btn'){
         allCardSection.classList.add('hidden');
         filterSection.classList.remove('hidden');
@@ -67,7 +69,7 @@ function toggleStyle(id){
         renderRejection();
     }
 }
-
+// step-2
 mainContainer.addEventListener('click', function(event){
     if(event.target.classList.contains('interview-btn')){
     const parentNode = event.target.parentNode.parentNode;
@@ -91,7 +93,7 @@ mainContainer.addEventListener('click', function(event){
     if(!jobExist){
         interviewList.push(cardInfo);
     }
-    
+// step-2 finish 
     rejectedList = rejectedList.filter(item=> item.companyTitle != cardInfo.companyTitle);
     calculateCount();
     if(currentStatus == 'rej-filter-btn'){
@@ -127,9 +129,15 @@ mainContainer.addEventListener('click', function(event){
     }
     }
 })
-
+// step-3 html file create
 function renderInterview(){
     filterSection.innerHTML = '';
+    const noJobsView = document.getElementById('no-jobs-view');
+    if (interviewList.length === 0) {
+        noJobsView.classList.remove('hidden'); 
+        return;
+    }
+    noJobsView.classList.add('hidden');
     for(let interview of interviewList){
         console.log(interview);
         let div = document.createElement('div');
@@ -155,6 +163,14 @@ function renderInterview(){
 }
 function renderRejection(){
     filterSection.innerHTML = '';
+    const noJobsView = document.getElementById('no-jobs-view');
+
+    if (rejectedList.length === 0) {
+        noJobsView.classList.remove('hidden');
+        return;
+    }
+
+    noJobsView.classList.add('hidden');
     for(let rejection of rejectedList){
         console.log(rejection);
         let div = document.createElement('div');
